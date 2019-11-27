@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 //Java 5+
-//threads and futures
+//ExecutorService, Callable/Runnable and Futures
 public class Java5_ExecutorCallableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();

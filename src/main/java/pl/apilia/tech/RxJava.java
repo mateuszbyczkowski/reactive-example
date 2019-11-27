@@ -13,13 +13,13 @@ import static java.lang.Thread.sleep;
 
 public class RxJava {
     public static void main(String[] args) throws Exception {
-        //simpleObserver();
+        simpleObserver();
 
-        questionObs();
+        //questionObs();
 
         //zipExample();
 
-        // moreFeatures();
+        //moreFeatures();
 
         //periodObservable();
 
@@ -44,7 +44,6 @@ public class RxJava {
 
             @Override
             public void onSubscribe(Disposable disposable) {
-
             }
 
             @Override
@@ -53,7 +52,7 @@ public class RxJava {
             }
         });
 
-        // java8+ style still simple observer
+        // java8+ style, still simple observer
         ob.subscribe(
                 System.out::println,
                 throwable -> System.out.println("error"),
@@ -65,7 +64,7 @@ public class RxJava {
         Observable<String> ob = Observable.just("hello", "world", "apilia", "apilia");
 
         // advanced observer
-        //what is the result of following stream?
+        // what is the result of the following stream?
         Observable<String> chainObservable = ob
                 .doOnComplete(() -> System.out.println("Clean up this mess"))
                 .filter(x -> x.equals("apilia"))

@@ -35,7 +35,12 @@ public class Java11_HttpClient {
 
         //async send
         CompletableFuture<HttpResponse<String>> responseAsync = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-        String responseBody = responseAsync.orTimeout(5, TimeUnit.SECONDS).get().body();
+        String responseBody = responseAsync
+                .orTimeout(5, TimeUnit.SECONDS)
+                //.thenAcceptAsync()
+                //.thenCombineAsync()
+                .get()
+                .body();
         System.out.println(responseBody);
     }
 

@@ -8,12 +8,11 @@ public class Java8_CompletableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         completableFuture();
 
-        chainOfFutures();
+        //chainOfFutures();
 
-        completableJoin();
+        //completableJoin();
 
-        dealWithErrors();
-
+        //dealWithErrors();
     }
 
     private static void completableFuture() throws InterruptedException, ExecutionException {
@@ -25,22 +24,24 @@ public class Java8_CompletableFuture {
         System.out.println(cf.get());
     }
 
-    private static void chainOfFutures() {
+    private static void chainOfFutures() throws ExecutionException, InterruptedException {
         //chain of completable futures
         CompletableFuture.supplyAsync(() -> "hello")
                 .thenApplyAsync((x -> x + " apilia"))
-                .thenAcceptAsync(System.out::println);
+                .thenAcceptAsync(System.out::println)
+                .get();
     }
 
-    private static void completableJoin() {
+    private static void completableJoin() throws ExecutionException, InterruptedException {
         //completable join
         CompletableFuture.supplyAsync(() -> "hello")
                 .thenCombineAsync(CompletableFuture.supplyAsync(() -> " apilia"), (x, y) -> x + y)
-                .thenAcceptAsync(System.out::println);
+                .thenAcceptAsync(System.out::println)
+                .get();
     }
 
     private static void dealWithErrors() {
-        //deal with errors
+        //deal with errors, combining working future with failed future
         CompletableFuture.failedFuture(new IllegalStateException())
                 .thenCombineAsync(CompletableFuture.supplyAsync(() -> " apilia"), (x, y) -> x + y)
                 .exceptionally(err -> "We have an error " + err.getMessage())

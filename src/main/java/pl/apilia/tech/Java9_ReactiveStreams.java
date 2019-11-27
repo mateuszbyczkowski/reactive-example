@@ -4,20 +4,21 @@ import java.util.concurrent.*;
 
 import static java.lang.Thread.sleep;
 
-//Java 8+
-//block until completed
+//Java 9+
+//utility methods to support CompletableFutures
 public class Java9_ReactiveStreams {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        //completeTimeout();
+        completeTimeout();
 
         //throwTimeout();
 
         //copy();
 
-        reactiveStreams();
+        //reactiveStreams();
     }
 
     private static void completeTimeout() throws InterruptedException, ExecutionException {
+        //we can complete on timeout
         CompletableFuture<String> cf = new CompletableFuture<>();
 
         //complete on timeout
@@ -37,24 +38,24 @@ public class Java9_ReactiveStreams {
     }
 
     private static void copy() throws InterruptedException, ExecutionException {
+        //defensive copy of future
         CompletableFuture<String> cf;
         CompletableFuture<String> copy;
 
-        //complete original
+        //complete original - example
         cf = new CompletableFuture<>();
         copy = cf.copy();
         cf.complete("done");
 
         System.out.println(copy.get()); //copy completed
 
-        //complete copy
+        //complete copy - example
         cf = new CompletableFuture<>();
         copy = cf.copy();
         copy.complete("done");
 
         System.out.println(cf.get()); //original waiting
     }
-
 
     private static void reactiveStreams() throws InterruptedException {
         //backpressure - working with live data
