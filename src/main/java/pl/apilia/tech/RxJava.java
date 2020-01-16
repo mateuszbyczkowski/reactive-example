@@ -13,7 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class RxJava {
     public static void main(String[] args) throws Exception {
-        simpleObserver();
+        //simpleObserver();
 
         //questionObs();
 
@@ -23,7 +23,7 @@ public class RxJava {
 
         //periodObservable();
 
-        //boxingSlowService();
+        boxingSlowService();
 
     }
 
@@ -67,8 +67,8 @@ public class RxJava {
         // what is the result of the following stream?
         Observable<String> chainObservable = ob
                 .doOnComplete(() -> System.out.println("Clean up this mess"))
-                .filter(x -> x.equals("apilia"))
-                .distinct()
+                .filter(x -> x.equals("apilia"))//apilia apilia
+                .distinct()//apilia
                 .map(x -> "This is " + x + "!")
                 .map(String::toUpperCase)
                 .doOnError(t -> System.out.println("Error: " + t.getMessage()));

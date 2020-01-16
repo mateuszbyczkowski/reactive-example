@@ -8,7 +8,7 @@ import static java.lang.Thread.sleep;
 //utility methods to support CompletableFutures
 public class Java9_ReactiveStreams {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        completeTimeout();
+        //completeTimeout();
 
         //throwTimeout();
 
@@ -64,12 +64,12 @@ public class Java9_ReactiveStreams {
         SubmissionPublisher<String> pub = new SubmissionPublisher<String>();
         pub.subscribe(sub);
 
-        pub.submit("hello apilia");
+        pub.submit("hello guys!");
         pub.submit("nice example");
 
         sleep(500); //because we are closing main thread before thread with submitted tasks delivers
         pub.close();
 
-        pub.submit("hello apilia");
+        pub.submit("goodbye guys!");
     }
 }

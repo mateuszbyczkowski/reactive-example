@@ -47,7 +47,7 @@ public class Java11_HttpClient {
     private static void runHttpServer() throws IOException {
         //http server
         HttpHandler handler = httpExchange -> {
-            String body = "hello apilia";
+            String body = "Server answers: OK";
             httpExchange.sendResponseHeaders(200, body.length());
             try (OutputStream os = httpExchange.getResponseBody()) {
                 os.write(body.getBytes());

@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 //block until completed
 public class Java8_CompletableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        completableFuture();
+        //completableFuture();
 
         //chainOfFutures();
 
@@ -17,10 +17,10 @@ public class Java8_CompletableFuture {
 
     private static void completableFuture() throws InterruptedException, ExecutionException {
         CompletableFuture<String> cf = new CompletableFuture<>();
-        cf.complete("Iam done");
-        System.out.println(cf.get());
+        //      cf.complete("Iam done");
+        //      System.out.println(cf.get());
 
-        cf.completeExceptionally(new IllegalStateException());
+        //       cf.completeExceptionally(new IllegalStateException());
         System.out.println(cf.get());
     }
 
@@ -35,12 +35,12 @@ public class Java8_CompletableFuture {
     private static void completableJoin() throws ExecutionException, InterruptedException {
         //completable join
         CompletableFuture.supplyAsync(() -> "hello")
-                .thenCombineAsync(CompletableFuture.supplyAsync(() -> " apilia"), (x, y) -> x + y)
+                .thenCombineAsync(CompletableFuture.supplyAsync(() -> " WMI speakers"), (x, y) -> x + y)
                 .thenAcceptAsync(System.out::println)
                 .get();
     }
 
-    private static void dealWithErrors() {
+    private static void dealWithErrors() throws ExecutionException, InterruptedException {
         //deal with errors, combining working future with failed future
         CompletableFuture.failedFuture(new IllegalStateException())
                 .thenCombineAsync(CompletableFuture.supplyAsync(() -> " apilia"), (x, y) -> x + y)
